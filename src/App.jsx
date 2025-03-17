@@ -136,7 +136,7 @@ function App() {
             alt="Banner Image"
             className="banner-image" // Use a CSS class for styling
           />
-          <div className="brand-name">Red Light Marketing</div>
+          {/* <div className="brand-name">Red Light Marketing</div> */}
           <button className="sign-in-button">Sign In</button>
         </div>
       </div>
