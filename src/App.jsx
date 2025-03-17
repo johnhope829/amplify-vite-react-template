@@ -131,6 +131,11 @@ function App() {
     <div className="App">
       <div className="red-banner">
         <div className="banner-content">
+          <img
+            src="../public/rlm.png"
+            alt="Banner Image"
+            className="banner-image" // Use a CSS class for styling
+          />
           <div className="brand-name">Red Light Marketing</div>
           <button className="sign-in-button">Sign In</button>
         </div>
