@@ -132,7 +132,7 @@ function App() {
       <div className="red-banner">
         <div className="banner-content">
           <img
-            src="../public/rlm.png"
+            src="/rlm.png"
             alt="Banner Image"
             className="banner-image" // Use a CSS class for styling
           />
