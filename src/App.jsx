@@ -34,6 +34,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isLive, setIsLive] = useState(false);
+  const [isDetailed, setIsDetailed] = useState(false); // New state for quick vs detailed toggle
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +50,10 @@ function App() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ text: query }),
+          body: JSON.stringify({ 
+            text: query,
+            detailedInsights: isDetailed // Pass the preference to the API
+          }),
         });
         
         if (!response.ok) {
@@ -78,15 +82,39 @@ function App() {
           }
           
           if (matchedResponse) {
+            // If detailed is enabled, add extra information to the response
+            if (isDetailed) {
+              matchedResponse = {
+                ...matchedResponse,
+                explanation: `This SQL query ${matchedResponse.sql} retrieves data from the database by searching for '${query}'. The WHERE clause filters the results based on your search criteria.`,
+                performance: {
+                  estimatedCost: "Low",
+                  suggestedIndex: "idx_location",
+                  estimatedRows: matchedResponse.data.length
+                }
+              };
+            }
             setResult(matchedResponse);
           } else {
             // Generate generic response if no match
-            setResult({
+            const genericResponse = {
               sql: `SELECT * FROM table WHERE description LIKE '%${query}%';`,
               data: [
                 { id: 1, name: "Example Data", description: "No specific match found" }
               ]
-            });
+            };
+            
+            // Add detailed information if enabled
+            if (isDetailed) {
+              genericResponse.explanation = "This is a generic SQL query generated based on your input. It searches for your terms in the description column.";
+              genericResponse.performance = {
+                estimatedCost: "Unknown",
+                suggestedIndex: "None",
+                estimatedRows: "Unknown"
+              };
+            }
+            
+            setResult(genericResponse);
           }
           
           setLoading(false);
@@ -101,19 +129,34 @@ function App() {
   return (
     <div className="App">
       <div className="red-banner">
-        Red Light Marketing
+        <div className="banner-content">
+          <div className="brand-name">Red Light Marketing</div>
+          <button className="sign-in-button">Sign In</button>
+        </div>
       </div>
       <header className="App-header">
         <h1>Text to SQL Converter</h1>
-        <div className="mode-toggle">
-          <label>
-            <input
-              type="checkbox"
-              checked={isLive}
-              onChange={() => setIsLive(!isLive)}
-            />
-            Use Live API (Currently using {isLive ? 'API Gateway' : 'dummy data'})
-          </label>
+        <div className="toggle-container">
+          <div className="mode-toggle">
+            <label>
+              <input
+                type="checkbox"
+                checked={isLive}
+                onChange={() => setIsLive(!isLive)}
+              />
+              Use Live API (Currently using {isLive ? 'API Gateway' : 'dummy data'})
+            </label>
+          </div>
+          <div className="insight-toggle">
+            <label>
+              <input
+                type="checkbox"
+                checked={isDetailed}
+                onChange={() => setIsDetailed(!isDetailed)}
+              />
+              {isDetailed ? 'Detailed Insights' : 'Quick Answers'}
+            </label>
+          </div>
         </div>
       </header>
       <main>
@@ -139,6 +182,24 @@ function App() {
           <div className="result-container">
             <h2>Generated SQL</h2>
             <pre className="sql-result">{result.sql}</pre>
+            
+            {isDetailed && result.explanation && (
+              <div className="explanation-container">
+                <h2>SQL Explanation</h2>
+                <div className="explanation">{result.explanation}</div>
+              </div>
+            )}
+            
+            {isDetailed && result.performance && (
+              <div className="performance-container">
+                <h2>Performance Insights</h2>
+                <div className="performance-metrics">
+                  <div><strong>Estimated Cost:</strong> {result.performance.estimatedCost}</div>
+                  <div><strong>Suggested Index:</strong> {result.performance.suggestedIndex}</div>
+                  <div><strong>Estimated Rows:</strong> {result.performance.estimatedRows}</div>
+                </div>
+              </div>
+            )}
             
             {result.data && (
               <>

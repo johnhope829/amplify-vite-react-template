@@ -1,7 +1,6 @@
 .red-banner {
   background-color: rgb(181, 55, 55);
   color: white;
-  text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 10px;
@@ -12,6 +11,35 @@
   z-index: 1000;
 }
 
+.banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.sign-in-button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 6px 15px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sign-in-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
 body {
   margin: 0;
