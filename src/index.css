@@ -1,3 +1,18 @@
+.red-banner {
+  background-color: rgb(181, 55, 55);
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+
 body {
   margin: 0;
   background: #cdc2c2;
@@ -8,6 +23,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 
 main {
   display: flex;

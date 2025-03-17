@@ -100,7 +100,9 @@ function App() {
 
   return (
     <div className="App">
-      <RedBanner />
+      <div className="red-banner">
+        Red Light Marketing
+      </div>
       <header className="App-header">
         <h1>Text to SQL Converter</h1>
         <div className="mode-toggle">
