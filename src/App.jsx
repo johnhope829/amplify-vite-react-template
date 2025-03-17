@@ -34,7 +34,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isLive, setIsLive] = useState(false);
-  const [isDetailed, setIsDetailed] = useState(false); // New state for quick vs detailed toggle
+  const [isDetailed, setIsDetailed] = useState(false); // Insights mode toggle
+  const [showInfoPanel, setShowInfoPanel] = useState(false); // Info panel toggle
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -135,7 +136,54 @@ function App() {
         </div>
       </div>
       <header className="App-header">
-        <h1>Text to SQL Converter</h1>
+        <div className="title-container">
+          <h1>Text to SQL Converter</h1>
+          <button 
+            className="info-button" 
+            onClick={() => setShowInfoPanel(!showInfoPanel)}
+            aria-label="Information"
+          >
+            i
+          </button>
+        </div>
+        
+        {showInfoPanel && (
+          <div className="info-panel">
+            <div className="info-panel-header">
+              <h2>About This App</h2>
+              <button 
+                className="close-button" 
+                onClick={() => setShowInfoPanel(false)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <div className="info-panel-content">
+              <h3>Purpose</h3>
+              <p>
+                This Text to SQL Converter helps you generate SQL queries using natural language. 
+                Simply type your question, and the app will convert it into a proper SQL query.
+              </p>
+              
+              <h3>How to Use</h3>
+              <ol>
+                <li>Type your question in plain English in the text area</li>
+                <li>Choose between Quick Answers or Detailed Insights</li>
+                <li>Click "Convert to SQL" to generate your query</li>
+                <li>View the generated SQL and results below</li>
+              </ol>
+              
+              <h3>Example Questions</h3>
+              <ul className="example-list">
+                <li>"Show me all customers from New York"</li>
+                <li>"List sales from last month"</li>
+                <li>"Find customers who spent more than $500"</li>
+              </ul>
+            </div>
+          </div>
+        )}
+        
         <div className="toggle-container">
           <div className="mode-toggle">
             <label>
@@ -148,14 +196,20 @@ function App() {
             </label>
           </div>
           <div className="insight-toggle">
-            <label>
-              <input
-                type="checkbox"
-                checked={isDetailed}
-                onChange={() => setIsDetailed(!isDetailed)}
-              />
-              {isDetailed ? 'Detailed Insights' : 'Quick Answers'}
-            </label>
+            <div className="toggle-buttons">
+              <button 
+                className={`toggle-button ${!isDetailed ? 'active' : ''}`}
+                onClick={() => setIsDetailed(false)}
+              >
+                Quick Answers
+              </button>
+              <button 
+                className={`toggle-button ${isDetailed ? 'active' : ''}`}
+                onClick={() => setIsDetailed(true)}
+              >
+                Detailed Insights
+              </button>
+            </div>
           </div>
         </div>
       </header>
