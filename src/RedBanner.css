@@ -1,0 +1,9 @@
+.red-banner {
+    background-color: rgb(181, 55, 55);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 1.2em;
+    width: 100%;
+  }
