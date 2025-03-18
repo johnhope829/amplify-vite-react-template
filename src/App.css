@@ -21,11 +21,11 @@
 }
 
 .info-button {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
-  background-color: #0066cc;
-  color: white;
+  background-color: #ffffffaa;
+  color: rgb(0, 0, 0);
   font-size: 1.2rem;
   font-weight: bold;
   border: none;
@@ -39,7 +39,7 @@
 }
 
 .info-button:hover {
-  background-color: #0055aa;
+  background-color: #d2d2d2aa;
 }
 
 /* Info panel styles */
