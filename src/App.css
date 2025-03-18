@@ -24,7 +24,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #ffffffaa;
+  background-color: #cf7979ce;
   color: rgb(0, 0, 0);
   font-size: 1.2rem;
   font-weight: bold;
@@ -39,7 +39,7 @@
 }
 
 .info-button:hover {
-  background-color: #d2d2d2aa;
+  background-color: #a25353ce;
 }
 
 /* Info panel styles */

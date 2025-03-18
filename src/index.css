@@ -2,19 +2,19 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;  /* Changed from 100vw to 100% */
   background-color: rgb(223, 37, 39);
   color: white;
   padding: 8px 10px;
   z-index: 1000;
   border-bottom: 2px solid rgb(151, 13, 13);
+  box-sizing: border-box;  /* Ensures padding doesn't add to width */
 }
 
 .banner-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;  /* Aligns items to the left */
   align-items: center;
-  margin: 0 auto;
   padding: 0 1rem;
 }
 
@@ -33,8 +33,8 @@
 }
 
 .sign-in-button {
+  margin-left: 20px;  /* Space between logo and button */
   background-color: transparent;
-  padding-right: 20px; 
   border: 1px solid white;
   color: white;
   padding: 6px 15px;
