@@ -142,7 +142,7 @@ function App() {
       </div>
       <header className="App-header">
         <div className="title-container">
-          <h1>Text to SQL Converter</h1>
+          <h1>Marketing Analytics AI</h1>
           <button 
             className="info-button" 
             onClick={() => setShowInfoPanel(!showInfoPanel)}
@@ -231,7 +231,7 @@ function App() {
             />
           </div>
           <button type="submit" className="submit-button" disabled={loading}>
-            {loading ? 'Converting...' : 'Convert to SQL'}
+            {loading ? 'Generating Insights...' : 'Generate'}
           </button>
         </form>
 
